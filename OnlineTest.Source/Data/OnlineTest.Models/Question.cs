@@ -24,7 +24,7 @@ namespace OnlineTest.Models
 
         public int CorrectAnswerId { get; set; }
 
-        public virtual Answer CorrectAnswer { get; set; }
+        // public virtual Answer CorrectAnswer { get; set; }
 
         public virtual ICollection<Test> Tests { get { return this.tests; } set { this.tests = value; } }
         public virtual ICollection<Answer> Answers { get { return this.answers; } set { this.answers = value; } }
