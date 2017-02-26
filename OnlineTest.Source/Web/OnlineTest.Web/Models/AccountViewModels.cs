@@ -65,6 +65,18 @@ namespace OnlineTest.Web.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(15)]
+        public string UserName { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        public string LastName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
