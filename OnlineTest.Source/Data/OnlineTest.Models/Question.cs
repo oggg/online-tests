@@ -16,7 +16,10 @@ namespace OnlineTest.Models
 
         public int Id { get; set; }
 
-        [StringLength(200)]
+        [StringLength(50)]
+        public string Text { get; set; }
+
+        [StringLength(100)]
         public string Description { get; set; }
 
         public int CorrectAnswerId { get; set; }
