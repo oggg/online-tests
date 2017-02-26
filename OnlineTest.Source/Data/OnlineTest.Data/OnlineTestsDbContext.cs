@@ -11,6 +11,14 @@
         {
         }
 
+        public virtual IDbSet<Answer> Answer { get; set; }
+
+        public virtual IDbSet<Question> Question { get; set; }
+
+        public virtual IDbSet<Score> Score { get; set; }
+
+        public virtual IDbSet<Test> Test { get; set; }
+
         public static OnlineTestsDbContext Create()
         {
             return new OnlineTestsDbContext();

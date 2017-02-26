@@ -10,7 +10,12 @@ namespace OnlineTest.Data.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(OnlineTest.Data.OnlineTestsDbContext context)
+        protected override void Seed(OnlineTestsDbContext context)
+        {
+
+        }
+
+        private void Answers(OnlineTestsDbContext context)
         {
 
         }
