@@ -103,7 +103,31 @@ namespace OnlineTest.Data.Migrations
 
         private void Tests(OnlineTestsDbContext context)
         {
+            Question[] questions = context.Question.ToArray();
 
+            for (int i = 1; i <= TestsConstants.NumberOfTests; i++)
+            {
+                var questionsForCurrentTest = GetRandomQuestions(questions);
+                context.Test.Add(new Test()
+                {
+                    Name = "Test " + i,
+                    Questions = new HashSet<Question>(questionsForCurrentTest)
+                });
+            }
+
+            context.SaveChanges();
+        }
+
+        private ICollection<Question> GetRandomQuestions(IList<Question> questions)
+        {
+            int numberOfQuestions = random.Next(2, questions.Count);
+            ICollection<Question> randomQuestions = new HashSet<Question>();
+
+            while (randomQuestions.Count < numberOfQuestions)
+            {
+                randomQuestions.Add(questions[random.Next(questions.Count)]);
+            }
+            return randomQuestions;
         }
     }
 }
