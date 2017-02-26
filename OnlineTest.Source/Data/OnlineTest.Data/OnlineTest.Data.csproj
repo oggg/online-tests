@@ -59,6 +59,8 @@
   <ItemGroup>
     <Compile Include="OnlineTestsDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineTest.Models\OnlineTest.Models.csproj">
