@@ -59,6 +59,13 @@ namespace OnlineTest.Web.Controllers
             return View();
         }
 
+
+        //GET: /Account/Login start page
+        public ActionResult Login()
+        {
+            return View();
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]
