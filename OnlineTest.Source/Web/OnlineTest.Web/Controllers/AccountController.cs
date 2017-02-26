@@ -53,11 +53,11 @@ namespace OnlineTest.Web.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
+        //public ActionResult Login(string returnUrl)
+        //{
+        //    ViewBag.ReturnUrl = returnUrl;
+        //    return View();
+        //}
 
 
         //GET: /Account/Login start page
@@ -156,7 +156,7 @@ namespace OnlineTest.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
