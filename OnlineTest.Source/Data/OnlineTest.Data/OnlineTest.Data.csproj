@@ -64,6 +64,10 @@
     <Compile Include="Repositories\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\OnlineTest.Common\OnlineTest.Common.csproj">
+      <Project>{E3A00986-6187-4180-BC30-D44FE965E3B2}</Project>
+      <Name>OnlineTest.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnlineTest.Models\OnlineTest.Models.csproj">
       <Project>{0C5DACC7-4D86-4847-951B-84207B98AF7D}</Project>
       <Name>OnlineTest.Models</Name>
