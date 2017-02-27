@@ -3,7 +3,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace OnlineTest.Data
 {
-    interface IOnlineTestsDbContext
+    public interface IOnlineTestsDbContext
     {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

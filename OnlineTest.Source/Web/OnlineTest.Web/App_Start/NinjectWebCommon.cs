@@ -8,7 +8,6 @@ namespace OnlineTest.Web.App_Start
     using Data;
     using Data.Repositories;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
@@ -63,7 +62,7 @@ namespace OnlineTest.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(OnlineTestsDbContext)).To(typeof(OnlineTestsDbContext));
+            kernel.Bind(typeof(IOnlineTestsDbContext)).To(typeof(OnlineTestsDbContext));
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
 
             kernel.Bind(b => b.From("OnlineTest.Services")

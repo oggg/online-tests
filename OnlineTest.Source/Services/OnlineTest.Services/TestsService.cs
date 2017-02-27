@@ -1,10 +1,11 @@
 ﻿namespace OnlineTest.Services
 {
     using System.Linq;
+    using Contracts;
     using Data.Repositories;
     using Models;
 
-    public class TestsService
+    public class TestsService : ITestsService
     {
         GenericRepository<Test> tests;
 

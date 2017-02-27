@@ -3,7 +3,7 @@ using OnlineTest.Models;
 
 namespace OnlineTest.Services.Contracts
 {
-    interface ITestsService
+    public interface ITestsService
     {
         IQueryable<Test> GetAll();
 
