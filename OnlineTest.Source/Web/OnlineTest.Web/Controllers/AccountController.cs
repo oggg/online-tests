@@ -397,7 +397,7 @@ namespace OnlineTest.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
@@ -454,7 +454,7 @@ namespace OnlineTest.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Tests");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
