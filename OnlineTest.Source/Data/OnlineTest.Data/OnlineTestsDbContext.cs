@@ -28,7 +28,6 @@
         {
             modelBuilder.Entity<User>().Ignore(u => u.PhoneNumber)
                                        .Ignore(u => u.PhoneNumberConfirmed)
-                                       .Ignore(u => u.Roles)
                                        .Ignore(u => u.TwoFactorEnabled);
             base.OnModelCreating(modelBuilder);
         }

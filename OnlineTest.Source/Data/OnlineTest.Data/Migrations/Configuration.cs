@@ -20,6 +20,7 @@ namespace OnlineTest.Data.Migrations
         {
             Answers(context);
             Questions(context);
+            Tests(context);
         }
 
         private void Answers(OnlineTestsDbContext context)
@@ -90,9 +91,9 @@ namespace OnlineTest.Data.Migrations
                 Text = "What is the fifth word in the following text?",
                 Answers = new HashSet<Answer>()
                                       {
-                                          answers[6],
-                                          answers[7],
-                                          answers[4]
+                                          answers[4],
+                                          answers[1],
+                                          answers[2]
                                       },
                 CorrectAnswerId = answers[4].Id,
                 Description = TestsConstants.DescriptionTextForQuestions
