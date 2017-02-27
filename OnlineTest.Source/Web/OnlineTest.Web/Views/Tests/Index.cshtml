@@ -1,3 +1,13 @@
-﻿<div class="row">
+﻿@using OnlineTest.Models
+@model IEnumerable<Test>
+
+<div class="row">
     Tests controller
 </div>
+
+@foreach(Test test in Model)
+{
+    <div>
+        @test.Name
+    </div>
+}

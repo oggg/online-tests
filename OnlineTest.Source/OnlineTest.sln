@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0CF0EF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineTest.Common", "Common\OnlineTest.Common\OnlineTest.Common.csproj", "{E3A00986-6187-4180-BC30-D44FE965E3B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineTest.Services", "Services\OnlineTest.Services\OnlineTest.Services.csproj", "{D4B33451-8809-4F65-86E5-1FC0C1A2C8F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{E3A00986-6187-4180-BC30-D44FE965E3B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3A00986-6187-4180-BC30-D44FE965E3B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3A00986-6187-4180-BC30-D44FE965E3B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4B33451-8809-4F65-86E5-1FC0C1A2C8F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4B33451-8809-4F65-86E5-1FC0C1A2C8F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4B33451-8809-4F65-86E5-1FC0C1A2C8F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4B33451-8809-4F65-86E5-1FC0C1A2C8F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{0C5DACC7-4D86-4847-951B-84207B98AF7D} = {FD86E340-A85B-47BB-BE45-D5328C076581}
 		{72BEEC25-E61B-49E4-B03C-C4D3C2C815E2} = {62DEE8E0-9032-4763-B5FD-F062E5867981}
 		{E3A00986-6187-4180-BC30-D44FE965E3B2} = {0CF0EF15-E179-48D2-807D-C9430194B2A9}
+		{D4B33451-8809-4F65-86E5-1FC0C1A2C8F8} = {0A43FE55-B7BB-4191-9AB7-09387ED472D4}
 	EndGlobalSection
 EndGlobal

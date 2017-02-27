@@ -1,17 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using OnlineTest.Services;
 
 namespace OnlineTest.Web.Controllers
 {
     public class TestsController : Controller
     {
-        // GET: Tests
+        private readonly TestsService tests;
+        public TestsController(TestsService tests)
+        {
+            this.tests = tests;
+        }
+
+        public TestsController()
+        {
+        }
         public ActionResult Index()
         {
-            return View();
+            var tests = this.tests.GetAll().ToList();
+            return View(tests);
         }
     }
 }

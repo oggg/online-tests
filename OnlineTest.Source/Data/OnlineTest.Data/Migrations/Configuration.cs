@@ -18,9 +18,12 @@ namespace OnlineTest.Data.Migrations
 
         protected override void Seed(OnlineTestsDbContext context)
         {
-            Answers(context);
-            Questions(context);
-            Tests(context);
+            if (!context.Answer.Any())
+            {
+                Answers(context);
+                Questions(context);
+                Tests(context);
+            }
         }
 
         private void Answers(OnlineTestsDbContext context)
