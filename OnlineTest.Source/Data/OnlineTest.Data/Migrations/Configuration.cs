@@ -111,7 +111,7 @@ namespace OnlineTest.Data.Migrations
                 context.Test.Add(new Test()
                 {
                     Name = "Test " + i,
-                    Questions = new HashSet<Question>(questionsForCurrentTest)
+                    Questions = questionsForCurrentTest
                 });
             }
 
