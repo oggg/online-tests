@@ -4,7 +4,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using OnlineTest.Models;
 
-    public class OnlineTestsDbContext : IdentityDbContext<User>
+    public class OnlineTestsDbContext : IdentityDbContext<User>, IOnlineTestsDbContext
     {
         public OnlineTestsDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
