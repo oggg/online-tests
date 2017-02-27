@@ -26,7 +26,7 @@
             return this.scores.All();
         }
 
-        public Score GetById(string id)
+        public Score GetByUserId(string id)
         {
             return this.scores.All().FirstOrDefault(s => s.Id == id);
         }

@@ -1,13 +1,16 @@
-﻿@using OnlineTest.Models
-@model IEnumerable<Test>
+﻿@using OnlineTest.Web.Models
+@using OnlineTest.Models
+@model TestsListViewModel
 
-<div class="row">
-    Tests controller
-</div>
 
-@foreach(Test test in Model)
-{
-    <div>
-        @test.Name
+<div class="container">
+    <div class="row">
+        @foreach (Test test in Model.Tests)
+        {
+            <div>
+                <a href="#" class="btn btn-success btn-lg">@test.Name</a>
+            </div>
+            </br>
+        }
     </div>
-}
+</div>

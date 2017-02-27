@@ -9,7 +9,7 @@
 
         IQueryable<Score> GetAll();
 
-        Score GetById(string id);
+        Score GetByUserId(string id);
 
         Score UpdateById(string id, Score updateScore);
     }
