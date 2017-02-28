@@ -19,9 +19,9 @@
             return this.tests.All();
         }
 
-        public Test GetById(int categoryId)
+        public Test GetById(int id)
         {
-            Test category = this.tests.All().FirstOrDefault(w => w.Id == categoryId);
+            Test category = this.tests.All().FirstOrDefault(w => w.Id == id);
             return category;
         }
     }

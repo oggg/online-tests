@@ -3,8 +3,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using OnlineTest.Services.Contracts;
 using OnlineTest.Web.Models;
-using System.Linq;
-using System.Collections.Generic;
+using OnlineTest.Models;
 
 namespace OnlineTest.Web.Controllers
 {
@@ -37,7 +36,15 @@ namespace OnlineTest.Web.Controllers
         [HttpGet]
         public ActionResult SelectTest(int id)
         {
-            return Content(id.ToString());
+            //TODO: add cache for the test
+
+            Test currentTest = this.tests.GetById(id);
+            TestStartViewModel tsvm = new TestStartViewModel()
+                            {
+                                Id = currentTest.Id,
+                                Name = currentTest.Name
+                            };
+            return View(tsvm);
         }
     }
 }

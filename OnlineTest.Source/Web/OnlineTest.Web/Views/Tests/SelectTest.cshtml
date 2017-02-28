@@ -1,0 +1,5 @@
+﻿@using OnlineTest.Web.Models
+@model TestStartViewModel
+
+<h1>@Model.Name</h1>
+@Html.ActionLink("Start test", "Index", "Question", new { id = Model.Id}, new { @class="btn btn-info"})

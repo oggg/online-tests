@@ -7,6 +7,6 @@ namespace OnlineTest.Services.Contracts
     {
         IQueryable<Test> GetAll();
 
-        Test GetById(int categoryId);
+        Test GetById(int id);
     }
 }
