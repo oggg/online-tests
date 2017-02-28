@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Web.Caching;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using OnlineTest.Models;
 using OnlineTest.Services.Contracts;
 using OnlineTest.Web.Models;
-using OnlineTest.Models;
 
 namespace OnlineTest.Web.Controllers
 {
@@ -36,14 +38,44 @@ namespace OnlineTest.Web.Controllers
         [HttpGet]
         public ActionResult SelectTest(int id)
         {
-            //TODO: add cache for the test
-
             Test currentTest = this.tests.GetById(id);
+            TestCacheModel testCache = new TestCacheModel()
+            {
+                Id = id,
+                Name = currentTest.Name,
+                Questions = currentTest.Questions.Select(x => new QuestionViewModel
+                {
+                    Id = x.Id,
+                    Text = x.Text,
+                    Description = x.Description,
+                    Answers = x.Answers,
+                    CorrectAnswerId = x.CorrectAnswerId
+                }).ToList(),
+                QuestionIndex = 0
+            };
+
+            string currentUserId = User.Identity.GetUserId();
+            string testCacheKey = currentUserId + currentTest.Id;
+
             TestStartViewModel tsvm = new TestStartViewModel()
-                            {
-                                Id = currentTest.Id,
-                                Name = currentTest.Name
-                            };
+            {
+                Id = currentTest.Id,
+                Name = currentTest.Name,
+                QuestionIndex = 0
+            };
+
+            if (this.HttpContext.Cache[testCacheKey] == null)
+            {
+                this.HttpContext.Cache.Insert(
+                    testCacheKey,
+                    testCache,
+                    null,
+                    DateTime.Now.AddDays(1),
+                    TimeSpan.Zero,
+                    CacheItemPriority.Default,
+                    null);
+            }
+
             return View(tsvm);
         }
     }
