@@ -2,4 +2,4 @@
 @model TestStartViewModel
 
 <h1>@Model.Name</h1>
-@Html.ActionLink("Start test", "Index", "Question", new { id = Model.Id}, new { @class="btn btn-info"})
+@Html.ActionLink("Start test", "Solve", "Question", new { testId = Model.Id, questionId = 1}, new { @class="btn btn-info"})

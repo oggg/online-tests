@@ -8,9 +8,9 @@ namespace OnlineTest.Web.Controllers
 {
     public class QuestionController : Controller
     {
-        public ActionResult Index(int id)
+        public ActionResult Solve(int testId, int questionId)
         {
-            return Content("Question controller index for Test" + id);
+            return Content("Question controller index for Test" + testId + "and question " + questionId);
         }
     }
 }

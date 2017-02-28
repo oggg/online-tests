@@ -80,7 +80,7 @@ namespace OnlineTest.Web.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                RedirectToAction("Index", "Tests");
+                return RedirectToAction("Index", "Tests");
             }
 
             // This doesn't count login failures towards account lockout
