@@ -47,6 +47,7 @@ namespace OnlineTest.Web.Controllers
                 {
                     Id = x.Id,
                     Text = x.Text,
+                    TestName = currentTest.Name,
                     Description = x.Description,
                     Answers = x.Answers,
                     CorrectAnswerId = x.CorrectAnswerId

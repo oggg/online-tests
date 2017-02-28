@@ -1,12 +1,22 @@
 ﻿using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using OnlineTest.Web.Models;
 
 namespace OnlineTest.Web.Controllers
 {
+    [Authorize]
     public class QuestionController : Controller
     {
-        public ActionResult Solve(int testId, int questionId)
+        [HttpGet]
+        public ActionResult Solve(int testId, int question)
         {
-            return Content("Question controller index for Test" + testId + "and question " + questionId);
+            var currentUserId = User.Identity.GetUserId();
+            var currentTestCacheKey = currentUserId + testId;
+            var currentTest = (TestCacheModel)this.HttpContext.Cache[currentTestCacheKey];
+
+            var currentQuestion = currentTest.Questions[currentTest.QuestionIndex];
+
+            return View(currentQuestion);
         }
     }
 }

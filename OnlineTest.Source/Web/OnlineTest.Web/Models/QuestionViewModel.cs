@@ -9,6 +9,8 @@
 
         public string Text { get; set; }
 
+        public string TestName { get; set; }
+
         public string Description { get; set; }
 
         public int CorrectAnswerId { get; set; }

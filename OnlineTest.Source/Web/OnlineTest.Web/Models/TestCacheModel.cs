@@ -8,7 +8,7 @@ namespace OnlineTest.Web.Models
 
         public string Name { get; set; }
 
-        public ICollection<QuestionViewModel> Questions { get; set; }
+        public IList<QuestionViewModel> Questions { get; set; }
 
         public int QuestionIndex { get; set; }
     }
