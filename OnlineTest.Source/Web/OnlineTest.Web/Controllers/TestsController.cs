@@ -3,6 +3,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using OnlineTest.Services.Contracts;
 using OnlineTest.Web.Models;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace OnlineTest.Web.Controllers
 {
@@ -20,11 +22,12 @@ namespace OnlineTest.Web.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
             var tests = this.tests.GetAll().ToList();
-            var scores = this.scores.GetByUserId(currentUserId);
+            var userTests = this.scores.GetByUserId(currentUserId).ToDictionary(k => k.Test.Id);
+
             TestsListViewModel model = new TestsListViewModel()
             {
                 Tests = tests,
-                UserScore = scores
+                UserScore = userTests
             };
 
             return View(model);

@@ -6,19 +6,15 @@
 
     public class Score
     {
-        private ICollection<Test> tests;
-        public Score()
-        {
-            this.tests = new HashSet<Test>();
-        }
+        public int Id { get; set; }
 
-        [Key, ForeignKey("User")]
-        public string Id { get; set; }
+        [Index]
+        public string UserId { get; set; }
 
         public virtual User User { get; set; }
 
         public double Result { get; set; }
 
-        public virtual ICollection<Test> Tests { get { return this.tests; } set { this.tests = value; } }
+        public virtual Test Test { get; set; }
     }
 }

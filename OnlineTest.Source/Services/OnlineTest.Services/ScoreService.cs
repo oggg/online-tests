@@ -4,6 +4,7 @@
     using Contracts;
     using Data.Repositories;
     using Models;
+    using System.Collections.Generic;
 
     public class ScoreService : IScoreService
     {
@@ -26,9 +27,9 @@
             return this.scores.All();
         }
 
-        public Score GetByUserId(string id)
+        public IEnumerable<Score> GetByUserId(string id)
         {
-            return this.scores.All().FirstOrDefault(s => s.Id == id);
+            return this.scores.All().Where(s => s.UserId == id);
         }
 
         public Score UpdateById(string id, Score updateScore)

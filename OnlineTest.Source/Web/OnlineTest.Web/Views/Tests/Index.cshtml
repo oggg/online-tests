@@ -7,10 +7,15 @@
     <div class="row">
         @foreach (Test test in Model.Tests)
         {
+            if (Model.UserScore.ContainsKey(test.Id))
+            {
+                <div>
+                    <button class="btn btn-success btn-lg" disabled>@test.Name</button><span>@Model.UserScore[test.Id].Result</span>
+                </div>
+            }
             <div>
-                <a href="#" class="btn btn-success btn-lg">@test.Name</a>
+                <button class="btn btn-success btn-lg">@test.Name</button>
             </div>
-            </br>
         }
     </div>
 </div>

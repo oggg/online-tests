@@ -7,6 +7,6 @@ namespace OnlineTest.Web.Models
     {
         public IEnumerable<Test> Tests { get; set; }
 
-        public Score UserScore { get; set; }
+        public Dictionary<int, Score> UserScore { get; set; }
     }
 }

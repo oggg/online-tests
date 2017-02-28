@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using Models;
+    using System.Collections.Generic;
 
     public interface IScoreService
     {
@@ -9,7 +10,7 @@
 
         IQueryable<Score> GetAll();
 
-        Score GetByUserId(string id);
+        IEnumerable<Score> GetByUserId(string id);
 
         Score UpdateById(string id, Score updateScore);
     }
