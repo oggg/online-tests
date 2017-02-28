@@ -4,18 +4,22 @@
 
 
 <div class="container">
-    <div class="row">
+    <table id="test-list-table">
         @foreach (Test test in Model.Tests)
-        {
-            if (Model.UserScore.ContainsKey(test.Id))
             {
-                <div>
-                    <button class="btn btn-success btn-lg" disabled>@test.Name</button><span>@Model.UserScore[test.Id].Result</span>
-                </div>
-            }
-            <div>
-                <button class="btn btn-success btn-lg">@test.Name</button>
-            </div>
+            <tr>
+                @if (Model.UserScore.ContainsKey(test.Id))
+                {
+                    <td><button class="btn btn-success btn-lg" disabled>@test.Name</button></td>
+                        <td><span>@Model.UserScore[test.Id].Result</span></td>
+                }
+                else
+                {
+                    <td>
+                        <button class="btn btn-success btn-lg">@test.Name</button>
+                    </td>
+                }
+            </tr>
         }
-    </div>
+    </table>
 </div>

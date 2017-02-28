@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#test-list-table {
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    /*Alternatively you could use: */
+    /*
+              position: fixed;
+               bottom: 50%;
+               right: 50%;
+           */
+}
