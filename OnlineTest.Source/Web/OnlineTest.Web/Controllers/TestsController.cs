@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace OnlineTest.Web.Controllers
 {
+    [Authorize]
     public class TestsController : Controller
     {
         private readonly ITestsService tests;
@@ -31,6 +32,12 @@ namespace OnlineTest.Web.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult SelectTest(int id)
+        {
+            return Content(id.ToString());
         }
     }
 }
