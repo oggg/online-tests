@@ -1,11 +1,11 @@
 ﻿namespace OnlineTest.Models
 {
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public class Score
     {
+        [Key]
         public int Id { get; set; }
 
         [Index]

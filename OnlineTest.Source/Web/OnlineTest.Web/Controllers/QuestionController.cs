@@ -1,11 +1,11 @@
-﻿using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using OnlineTest.Web.Models;
-using System;
+﻿using System;
 using System.Web.Caching;
+using System.Web.Mvc;
 using System.Web.Routing;
-using OnlineTest.Services.Contracts;
+using Microsoft.AspNet.Identity;
 using OnlineTest.Models;
+using OnlineTest.Services.Contracts;
+using OnlineTest.Web.Models;
 
 namespace OnlineTest.Web.Controllers
 {
@@ -25,7 +25,7 @@ namespace OnlineTest.Web.Controllers
             string currentUserId = User.Identity.GetUserId();
             string currentTestCacheKey = currentUserId + testId;
             TestCacheModel currentTest = (TestCacheModel)this.HttpContext.Cache[currentTestCacheKey];
-            
+
             var currentQuestion = currentTest.Questions[currentTest.QuestionIndex];
 
             QuestionViewModel currentQuestionView = new QuestionViewModel()
@@ -38,7 +38,7 @@ namespace OnlineTest.Web.Controllers
                 IsFirst = currentTest.QuestionIndex == 0 ? true : false,
                 IsLast = currentTest.QuestionIndex == currentTest.Questions.Count - 1 ? true : false
             };
-            
+
             return View(currentQuestionView);
         }
 
@@ -52,20 +52,29 @@ namespace OnlineTest.Web.Controllers
 
             TestCacheModel currentTest = (TestCacheModel)this.HttpContext.Cache[currentTestCacheKey];
 
-            QuestionCacheModel question = currentTest.Questions[currentTest.QuestionIndex];
-
-            if (question.CorrectAnswerId == model.SelectedAnswerid)
+            if (model.Direction > 0)
             {
-                currentTest.Guessed++;
-            }
+                QuestionCacheModel question = currentTest.Questions[currentTest.QuestionIndex];
 
-            if (currentTest.QuestionIndex == currentTest.Questions.Count - 1)
+                if (question.CorrectAnswerId == model.SelectedAnswerid)
+                {
+                    currentTest.Guessed++;
+                }
+
+                double result;
+                if (currentTest.QuestionIndex == currentTest.Questions.Count - 1)
+                {
+                    result = CalculateTestResult(currentTest);
+                    SaveTestResult(currentTest, currentUserId, result);
+                    return RedirectToAction("Index", "Test");
+                }
+
+                currentTest.QuestionIndex++;
+            }
+            else
             {
-                double result = CalculateTestResult(currentTest);
-
+                currentTest.QuestionIndex--;
             }
-
-            currentTest.QuestionIndex++;
 
             if (this.HttpContext.Cache[currentTestCacheKey] == null)
             {
@@ -89,12 +98,6 @@ namespace OnlineTest.Web.Controllers
         private double CalculateTestResult(TestCacheModel currentTest)
         {
             return (currentTest.Guessed / currentTest.Questions.Count) * 100;
-            //Score score = new Score()
-            //{
-            //    UserId = currentUserId,
-            //    TestId = currentTest.Id,
-            //    Result = result
-            //};
         }
 
         private void SaveTestResult(TestCacheModel currentTest, string userId, double result)
@@ -106,7 +109,7 @@ namespace OnlineTest.Web.Controllers
                 Result = result
             };
 
-            //TODO: continue with the saving of test score
+            this.scores.Add(score);
         }
     }
 }

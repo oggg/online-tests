@@ -4,9 +4,10 @@
 {
     @Html.AntiForgeryToken()
     <hr />
-    <input type="hidden" name="testId" value="@Model.TestId" id="testId"/>
-    <input id="questionId" name="questionId" value="@Model.Id" type="hidden"/>
-    <input type="hidden" name="selectedAnswerId" id="selectedAnswerId"/>
+    <input type="hidden" name="testId" value="@Model.TestId" id="testId" />
+    <input id="questionId" name="questionId" value="@Model.Id" type="hidden" />
+    <input type="hidden" name="selectedAnswerId" id="selectedAnswerId" />
+    <input type="hidden" name="direction" value="0" id="direction" />
 
     <h3>
         @Model.Text
@@ -24,15 +25,8 @@
         </div>
     }
 
-    if (!Model.IsFirst)
-    {
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-default" onclick="previous()">Previous question</button>
-            </div>
-        </div>
-    }
-    
+
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             @if (!Model.IsLast)
@@ -47,17 +41,30 @@
     </div>
 }
 
+@if (!Model.IsFirst)
+{
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-default" onclick="previous()">Previous question</button>
+        </div>
+    </div>
+}
+
 <script>
-    function previous() {
-        history.back()
+    function previous(e) {
+        $('#direction').val(-1);
+        history.go(-1);
+        console.log("Back function");
     }
 
     $('form').submit(function (e) {
         let selectedAnswerId = $('input[name="radio"]:checked').val();
-        $('#selectedAnswerId').val(selectedAnswerId);
+        $('#selectedAnswerId').val(selectedAnswerId || -1);
+        $('#direction').val(1);
         return true;
-})
+    })
 </script>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
