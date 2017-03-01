@@ -5,26 +5,65 @@
     @Html.AntiForgeryToken()
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
+    <input type="hidden" name="testId" value="@Model.TestId" id="testId"/>
     <input id="questionId" name="questionId" value="@Model.Id" type="hidden"/>
     <input type="hidden" name="selectedAnswerId" id="selectedAnswerId"/>
+
+    <h3>
+        @Model.Text
+    </h3>
+    <i>
+        @Model.Description
+    </i>
     foreach (var answer in Model.Answers)
     {
         <div class="form-group">
             @Html.Label(answer.Text, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.RadioButton("answer", answer.Id)
+                <input id="radio@(answer.Id)" type="radio" name="radio" value="@answer.Id" />
             </div>
         </div>
     }
 
-
+    if (!Model.IsFirst)
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-default" onclick="history.back()">Previous question</button>
+            </div>
+        </div>
+    }
+    
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Next question" />
+            @if (!Model.IsLast)
+            {
+                <input type="submit" class="btn btn-default" value="Next question" />
+            }
+            else
+            {
+                <input type="submit" class="btn btn-default" value="Finish" />
+            }
+            
         </div>
     </div>
 }
 
+<script>
+    function previous() {
+        history.back()
+    }
+
+    $('form').submit(function(e){
+        e.preventDefault();
+        console.log("Submit pressed");
+    //var $this = $(this)
+    //var formData = $this.serialize()
+    //// do some thing to it
+    //var yourData = transform(formData)
+    
+})
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

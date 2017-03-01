@@ -14,10 +14,10 @@ namespace OnlineTest.Web.Models
 
         public string Description { get; set; }
 
+        public int TestId { get; set; }
+
         public ICollection<Answer> Answers { get; set; }
-
-        public int SelectedAnswerId { get; set; }
-
+        
         public bool IsFirst { get; set; }
 
         public bool IsLast { get; set; }
