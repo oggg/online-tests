@@ -74,6 +74,10 @@ namespace OnlineTest.Web.Controllers
                     CacheItemPriority.Default,
                     null);
             }
+            else
+            {
+                this.HttpContext.Cache[testCacheKey] = testCache;
+            }
 
             return View(tsvm);
         }

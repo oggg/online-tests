@@ -4,7 +4,6 @@
 {
     @Html.AntiForgeryToken()
     <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
     <input type="hidden" name="testId" value="@Model.TestId" id="testId"/>
     <input id="questionId" name="questionId" value="@Model.Id" type="hidden"/>
     <input type="hidden" name="selectedAnswerId" id="selectedAnswerId"/>
@@ -29,7 +28,7 @@
     {
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-default" onclick="history.back()">Previous question</button>
+                <button class="btn btn-default" onclick="previous()">Previous question</button>
             </div>
         </div>
     }
@@ -44,7 +43,6 @@
             {
                 <input type="submit" class="btn btn-default" value="Finish" />
             }
-            
         </div>
     </div>
 }
@@ -54,14 +52,10 @@
         history.back()
     }
 
-    $('form').submit(function(e){
-        e.preventDefault();
-        console.log("Submit pressed");
-    //var $this = $(this)
-    //var formData = $this.serialize()
-    //// do some thing to it
-    //var yourData = transform(formData)
-    
+    $('form').submit(function (e) {
+        let selectedAnswerId = $('input[name="radio"]:checked').val();
+        $('#selectedAnswerId').val(selectedAnswerId);
+        return true;
 })
 </script>
 @section Scripts {
