@@ -66,7 +66,7 @@ namespace OnlineTest.Web.Controllers
                 {
                     result = CalculateTestResult(currentTest);
                     SaveTestResult(currentTest, currentUserId, result);
-                    return RedirectToAction("Index", "Test");
+                    return RedirectToAction("Index", "Tests");
                 }
 
                 currentTest.QuestionIndex++;
@@ -97,7 +97,7 @@ namespace OnlineTest.Web.Controllers
 
         private double CalculateTestResult(TestCacheModel currentTest)
         {
-            return (currentTest.Guessed / currentTest.Questions.Count) * 100;
+            return ((double)currentTest.Guessed / currentTest.Questions.Count) * 100;
         }
 
         private void SaveTestResult(TestCacheModel currentTest, string userId, double result)

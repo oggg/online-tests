@@ -1,14 +1,9 @@
 ﻿namespace OnlineTest.Models
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     public class Score
     {
-        [Key]
         public int Id { get; set; }
 
-        [Index]
         public string UserId { get; set; }
 
         public virtual User User { get; set; }
