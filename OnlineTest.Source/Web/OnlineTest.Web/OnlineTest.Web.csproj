@@ -197,7 +197,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\QuestionViewModel.cs" />
+    <Compile Include="Models\QuestionCacheModel.cs" />
     <Compile Include="Models\TestCacheModel.cs" />
     <Compile Include="Models\TestsListViewModel.cs" />
     <Compile Include="Models\TestStartViewModel.cs" />

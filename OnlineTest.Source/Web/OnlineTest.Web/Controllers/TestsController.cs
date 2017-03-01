@@ -43,11 +43,10 @@ namespace OnlineTest.Web.Controllers
             {
                 Id = id,
                 Name = currentTest.Name,
-                Questions = currentTest.Questions.Select(x => new QuestionViewModel
+                Questions = currentTest.Questions.Select(x => new QuestionCacheModel
                 {
                     Id = x.Id,
                     Text = x.Text,
-                    TestName = currentTest.Name,
                     Description = x.Description,
                     Answers = x.Answers,
                     CorrectAnswerId = x.CorrectAnswerId
