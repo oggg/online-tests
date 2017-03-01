@@ -5,13 +5,14 @@
     @Html.AntiForgeryToken()
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-
+    <input id="questionId" name="questionId" value="@Model.Id" type="hidden"/>
+    <input type="hidden" name="selectedAnswerId" id="selectedAnswerId"/>
     foreach (var answer in Model.Answers)
     {
         <div class="form-group">
-            @Html.RadioButton("answer", answer.Id)
+            @Html.Label(answer.Text, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.Label(answer.Text, new { @class = "col-md-2 control-label" })
+                @Html.RadioButton("answer", answer.Id)
             </div>
         </div>
     }

@@ -15,8 +15,17 @@ namespace OnlineTest.Web.Controllers
             var currentTest = (TestCacheModel)this.HttpContext.Cache[currentTestCacheKey];
 
             var currentQuestion = currentTest.Questions[currentTest.QuestionIndex];
-
-            return View(currentQuestion);
+            var currentQuestionView = new QuestionViewModel()
+            {
+                Answers = currentQuestion.Answers,
+                Description = currentQuestion.Description,
+                Id = currentQuestion.Id,
+                Text = currentQuestion.Text,
+                IsFirst = question == 0 ? true : false,
+                IsLast = question == currentTest.Questions.Count - 1 ? true : false
+            };
+            
+            return View(currentQuestionView);
         }
     }
 }
