@@ -10,25 +10,16 @@
             <tr>
                 @if (Model.UserScore.ContainsKey(test.Id))
                 {
-                    <td><button id="@test.Id" onclick="selectTest(event)" class="btn btn-success btn-lg" disabled>@test.Name</button></td>
+                    <td><span id="@test.Id" class="btn btn-success btn-lg">@test.Name</span></td>
                     <td><span>@Model.UserScore[test.Id].Result</span></td>
                 }
                 else
                 {
                     <td>
-                        <button id="@test.Id" onclick="selectTest(event)" class="btn btn-success btn-lg">@test.Name</button>
+                        <a id="@test.Id" href="/Tests/SelectTest/@test.Id" class="btn btn-success btn-lg">@test.Name</a>
                     </td>
                 }
             </tr>
         }
     </table>
 </div>
-<script>
-    function selectTest(event) {
-        let testId = event.target.id;
-        console.log(window.location.host);
-
-        let hostAddress = window.location.host;
-        window.open('http://' + hostAddress + '/Tests/SelectTest/' + testId);
-    }
-</script>
