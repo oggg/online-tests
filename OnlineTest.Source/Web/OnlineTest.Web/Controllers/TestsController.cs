@@ -60,7 +60,8 @@ namespace OnlineTest.Web.Controllers
             TestStartViewModel tsvm = new TestStartViewModel()
             {
                 Id = currentTest.Id,
-                Name = currentTest.Name
+                Name = currentTest.Name,
+                Question = 0
             };
 
             if (this.HttpContext.Cache[testCacheKey] == null)

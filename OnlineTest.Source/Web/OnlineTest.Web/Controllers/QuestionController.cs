@@ -20,13 +20,13 @@ namespace OnlineTest.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Solve(int testId)
+        public ActionResult Solve(int testId, int question)
         {
             string currentUserId = User.Identity.GetUserId();
             string currentTestCacheKey = currentUserId + testId;
             TestCacheModel currentTest = (TestCacheModel)this.HttpContext.Cache[currentTestCacheKey];
 
-            var currentQuestion = currentTest.Questions[currentTest.QuestionIndex];
+            var currentQuestion = currentTest.Questions[question];
 
             QuestionViewModel currentQuestionView = new QuestionViewModel()
             {
@@ -92,7 +92,7 @@ namespace OnlineTest.Web.Controllers
                 this.HttpContext.Cache[currentTestCacheKey] = currentTest;
             }
 
-            return RedirectToAction("Solve", new RouteValueDictionary(new { testId = currentTestId }));
+            return RedirectToAction("Solve", new RouteValueDictionary(new { testId = currentTestId, question = currentTest.QuestionIndex }));
         }
 
         private double CalculateTestResult(TestCacheModel currentTest)
