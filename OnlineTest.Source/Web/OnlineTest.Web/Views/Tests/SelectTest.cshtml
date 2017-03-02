@@ -2,7 +2,7 @@
 @model TestStartViewModel
 
 <h1>@Model.Name</h1>
-<button class="btn btn-info" onclick="selectTest(event)">Start test</button>
+<button id="selectTest" data-url="/Question/Solve?testId= + @Model.Id + &question= + @Model.Question" class="btn btn-info">Start test</button>
 
 @section Scripts {
     @Scripts.Render("~/bundles/select")

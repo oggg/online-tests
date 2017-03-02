@@ -1,11 +1,10 @@
-﻿(function () {
-
-    function selectTest(event) {
-        let hostAddress = window.location.host;
-        let button = event.target;
-        button.disabled = true;
-        window.open('http://' + hostAddress + '/Question/Solve?testId=' + @Model.Id + '&question=' + @Model.Question);
-    }     
-
-})();
-
+﻿$(document).ready(function() {
+    $('#selectTest').on('click', function () {
+        let hostAddr = window.location.origin;
+        let urlAttr = $(this).data('url');
+        let addr = hostAddr + urlAttr;
+        console.log(addr);
+        $(this).prop('disabled', true);
+        window.open(addr);
+    });
+});
