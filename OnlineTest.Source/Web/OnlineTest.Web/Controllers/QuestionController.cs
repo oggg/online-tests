@@ -37,8 +37,8 @@ namespace OnlineTest.Web.Controllers
                 Index = question,
                 Text = currentQuestion.Text,
                 TestId = testId,
-                IsFirst = currentTest.QuestionIndex == 0 ? true : false,
-                IsLast = currentTest.QuestionIndex == currentTest.Questions.Count - 1 ? true : false
+                IsFirst = question == 0 ? true : false,
+                IsLast = question == currentTest.Questions.Count - 1 ? true : false
             };
 
             return View(currentQuestionView);
@@ -58,7 +58,7 @@ namespace OnlineTest.Web.Controllers
                 return RedirectToAction("Logoff", "Account");
             }
 
-            QuestionCacheModel currentQuestion = currentTest.Questions[currentTest.QuestionIndex];
+            QuestionCacheModel currentQuestion = currentTest.Questions[question];
 
             if (currentTest.QuestionIndex == currentTest.Questions.Count - 1)
             {
@@ -71,9 +71,7 @@ namespace OnlineTest.Web.Controllers
                 SaveTestResult(currentTest, currentUserId, result);
                 return RedirectToAction("Index", "Tests");
             }
-
-            currentTest.QuestionIndex = question + 1;
-
+            
             if (this.HttpContext.Cache[currentTestCacheKey] == null)
             {
                 this.HttpContext.Cache.Insert(
@@ -90,6 +88,7 @@ namespace OnlineTest.Web.Controllers
                 this.HttpContext.Cache[currentTestCacheKey] = currentTest;
             }
 
+            currentTest.QuestionIndex = question + 1;
             return RedirectToAction("Solve", new RouteValueDictionary(new { testId = testId, question = currentTest.QuestionIndex }));
         }
 

@@ -52,13 +52,12 @@
 <script>
     function previous(e) {
         $('#direction').val(-1);
+        //setTimeout(history.back(), 10);
         history.back();
         console.log("Back function");
         return false;
     }
-
-    window
-
+    
     $('form').submit(function (e) {
         let selectedAnswerId = $('input[name="radio"]:checked').val();
         $('#selectedAnswerId').val(selectedAnswerId || -1);
