@@ -53,8 +53,8 @@ namespace OnlineTest.Web.Controllers
 
             TestCacheModel currentTest = (TestCacheModel)this.HttpContext.Cache[currentTestCacheKey];
 
-            if (model.Direction > 0)
-            {
+            //if (model.Direction > 0)
+            //{
                 QuestionCacheModel question = currentTest.Questions[currentTest.QuestionIndex];
                 double result;
 
@@ -70,13 +70,13 @@ namespace OnlineTest.Web.Controllers
                     return RedirectToAction("Index", "Tests");
                 }
 
-                currentTest.QuestionIndex++;
-            }
+                currentTest.QuestionIndex = model.Id + 1;
+            //}
             //TODO: remove, because of the browser back button?
-            else
-            {
-                currentTest.QuestionIndex--;
-            }
+            //else
+            //{
+            //    currentTest.QuestionIndex--;
+            //}
 
             if (this.HttpContext.Cache[currentTestCacheKey] == null)
             {
