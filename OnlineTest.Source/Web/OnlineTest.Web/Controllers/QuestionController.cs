@@ -7,6 +7,7 @@ using OnlineTest.Models;
 using OnlineTest.Services.Contracts;
 using OnlineTest.Web.Models;
 using System.Linq;
+using System.Net;
 
 namespace OnlineTest.Web.Controllers
 {
@@ -45,38 +46,34 @@ namespace OnlineTest.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Solve(QuestionPostModel model)
+        public ActionResult Solve(QuestionPostModel model, int testId, int question)
         {
             string currentUserId = User.Identity.GetUserId();
-            int currentTestId = model.TestId;
-            string currentTestCacheKey = currentUserId + currentTestId;
+            string currentTestCacheKey = currentUserId + testId;
 
             TestCacheModel currentTest = (TestCacheModel)this.HttpContext.Cache[currentTestCacheKey];
 
-            //if (model.Direction > 0)
-            //{
-                QuestionCacheModel question = currentTest.Questions[currentTest.QuestionIndex];
-                double result;
+            if (currentTest == null)
+            {
+                return RedirectToAction("Logoff", "Account");
+            }
 
-                if (currentTest.QuestionIndex == currentTest.Questions.Count - 1)
+            QuestionCacheModel currentQuestion = currentTest.Questions[currentTest.QuestionIndex];
+            double result;
+
+            if (currentTest.QuestionIndex == currentTest.Questions.Count - 1)
+            {
+                if (currentQuestion.CorrectAnswerId == model.SelectedAnswerid)
                 {
-                    if (question.CorrectAnswerId == model.SelectedAnswerid)
-                    {
-                        question.Guessed = true;
-                    }
-
-                    result = CalculateTestResult(currentTest);
-                    SaveTestResult(currentTest, currentUserId, result);
-                    return RedirectToAction("Index", "Tests");
+                    currentQuestion.Guessed = true;
                 }
 
-                currentTest.QuestionIndex = model.Id + 1;
-            //}
-            //TODO: remove, because of the browser back button?
-            //else
-            //{
-            //    currentTest.QuestionIndex--;
-            //}
+                result = CalculateTestResult(currentTest);
+                SaveTestResult(currentTest, currentUserId, result);
+                return RedirectToAction("Index", "Tests");
+            }
+
+            currentTest.QuestionIndex = model.Id + 1;
 
             if (this.HttpContext.Cache[currentTestCacheKey] == null)
             {
@@ -94,7 +91,7 @@ namespace OnlineTest.Web.Controllers
                 this.HttpContext.Cache[currentTestCacheKey] = currentTest;
             }
 
-            return RedirectToAction("Solve", new RouteValueDictionary(new { testId = currentTestId, question = currentTest.QuestionIndex }));
+            return RedirectToAction("Solve", new RouteValueDictionary(new { testId = testId, question = currentTest.QuestionIndex }));
         }
 
         private double CalculateTestResult(TestCacheModel currentTest)

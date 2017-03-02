@@ -3,7 +3,7 @@
     public class QuestionPostModel
     {
         public int Id { get; set; }
-
+        
         public byte Direction { get; set; }
 
         public int SelectedAnswerid { get; set; }
