@@ -34,7 +34,7 @@ namespace OnlineTest.Web.Controllers
             {
                 Answers = currentQuestion.Answers,
                 Description = currentQuestion.Description,
-                Id = currentQuestion.Id,
+                Index = question,
                 Text = currentQuestion.Text,
                 TestId = testId,
                 IsFirst = currentTest.QuestionIndex == 0 ? true : false,
@@ -59,7 +59,6 @@ namespace OnlineTest.Web.Controllers
             }
 
             QuestionCacheModel currentQuestion = currentTest.Questions[currentTest.QuestionIndex];
-            double result;
 
             if (currentTest.QuestionIndex == currentTest.Questions.Count - 1)
             {
@@ -68,12 +67,12 @@ namespace OnlineTest.Web.Controllers
                     currentQuestion.Guessed = true;
                 }
 
-                result = CalculateTestResult(currentTest);
+                double result = CalculateTestResult(currentTest);
                 SaveTestResult(currentTest, currentUserId, result);
                 return RedirectToAction("Index", "Tests");
             }
 
-            currentTest.QuestionIndex = model.Id + 1;
+            currentTest.QuestionIndex = question + 1;
 
             if (this.HttpContext.Cache[currentTestCacheKey] == null)
             {

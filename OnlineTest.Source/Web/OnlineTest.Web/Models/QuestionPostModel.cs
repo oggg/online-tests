@@ -2,7 +2,7 @@
 {
     public class QuestionPostModel
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         
         public byte Direction { get; set; }
 

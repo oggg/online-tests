@@ -1,20 +1,19 @@
 ﻿@model OnlineTest.Web.Models.QuestionViewModel
 
-@using (Html.BeginForm("Solve", "Question", new { testId = Model.TestId, question = Model.Id },FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Solve", "Question", new { testId = Model.TestId, question = Model.Index }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <hr />
     <input type="hidden" name="testId" value="@Model.TestId" id="testId" />
-    <input id="questionId" name="questionId" value="@Model.Id" type="hidden" />
     <input type="hidden" name="selectedAnswerId" id="selectedAnswerId" />
     <input type="hidden" name="direction" value="0" id="direction" />
 
     <h3>
         @Model.Text
     </h3>
-    <i>
-        @Model.Description
-    </i>
+        <i>
+            @Model.Description
+        </i>
     foreach (var answer in Model.Answers)
     {
         <div class="form-group">
@@ -55,6 +54,7 @@
         $('#direction').val(-1);
         history.go(-1);
         console.log("Back function");
+        return false;
     }
 
     $('form').submit(function (e) {
