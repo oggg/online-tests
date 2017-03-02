@@ -52,10 +52,12 @@
 <script>
     function previous(e) {
         $('#direction').val(-1);
-        history.go(-1);
+        history.back();
         console.log("Back function");
         return false;
     }
+
+    window
 
     $('form').submit(function (e) {
         let selectedAnswerId = $('input[name="radio"]:checked').val();
