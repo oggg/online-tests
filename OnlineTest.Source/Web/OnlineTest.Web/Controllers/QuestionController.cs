@@ -60,13 +60,17 @@ namespace OnlineTest.Web.Controllers
 
             QuestionCacheModel currentQuestion = currentTest.Questions[question];
 
+            if (currentQuestion.CorrectAnswerId == model.SelectedAnswerid)
+            {
+                currentQuestion.Guessed = true;
+            }
+            else
+            {
+                currentQuestion.Guessed = false;
+            }
+
             if (currentTest.QuestionIndex == currentTest.Questions.Count - 1)
             {
-                if (currentQuestion.CorrectAnswerId == model.SelectedAnswerid)
-                {
-                    currentQuestion.Guessed = true;
-                }
-
                 double result = CalculateTestResult(currentTest);
                 SaveTestResult(currentTest, currentUserId, result);
                 return RedirectToAction("Index", "Tests");
