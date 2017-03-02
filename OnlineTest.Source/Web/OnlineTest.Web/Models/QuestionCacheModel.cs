@@ -12,6 +12,8 @@
         public string Description { get; set; }
 
         public int CorrectAnswerId { get; set; }
+
+        public bool Guessed { get; set; }
         
         public ICollection<Answer> Answers { get; set; }
     }

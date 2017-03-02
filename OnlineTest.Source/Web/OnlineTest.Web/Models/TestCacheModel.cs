@@ -11,7 +11,5 @@ namespace OnlineTest.Web.Models
         public IList<QuestionCacheModel> Questions { get; set; }
 
         public int QuestionIndex { get; set; }
-
-        public int Guessed { get; set; }
     }
 }

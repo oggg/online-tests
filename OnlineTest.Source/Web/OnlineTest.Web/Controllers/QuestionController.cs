@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using OnlineTest.Models;
 using OnlineTest.Services.Contracts;
 using OnlineTest.Web.Models;
+using System.Linq;
 
 namespace OnlineTest.Web.Controllers
 {
@@ -55,15 +56,15 @@ namespace OnlineTest.Web.Controllers
             if (model.Direction > 0)
             {
                 QuestionCacheModel question = currentTest.Questions[currentTest.QuestionIndex];
-
-                if (question.CorrectAnswerId == model.SelectedAnswerid)
-                {
-                    currentTest.Guessed++;
-                }
-
                 double result;
+
                 if (currentTest.QuestionIndex == currentTest.Questions.Count - 1)
                 {
+                    if (question.CorrectAnswerId == model.SelectedAnswerid)
+                    {
+                        question.Guessed = true;
+                    }
+
                     result = CalculateTestResult(currentTest);
                     SaveTestResult(currentTest, currentUserId, result);
                     return RedirectToAction("Index", "Tests");
@@ -71,6 +72,7 @@ namespace OnlineTest.Web.Controllers
 
                 currentTest.QuestionIndex++;
             }
+            //TODO: remove, because of the browser back button?
             else
             {
                 currentTest.QuestionIndex--;
@@ -97,7 +99,8 @@ namespace OnlineTest.Web.Controllers
 
         private double CalculateTestResult(TestCacheModel currentTest)
         {
-            return ((double)currentTest.Guessed / currentTest.Questions.Count) * 100;
+            int correctAnswers = currentTest.Questions.Where(q => q.Guessed).Count();
+            return ((double)correctAnswers / currentTest.Questions.Count) * 100;
         }
 
         private void SaveTestResult(TestCacheModel currentTest, string userId, double result)
