@@ -1,14 +1,11 @@
 ﻿$(document).ready(function () {
-    function previous(e) {
-        $('#direction').val(-1);
+    $('#back-button').on('click', function () {
         history.back();
-        return false;
-    }
+    });
 
-    $('form').submit(function (e) {
+    $('form').submit(function () {
         let selectedAnswerId = $('input[name="radio"]:checked').val();
         $('#selectedAnswerId').val(selectedAnswerId || -1);
-        $('#direction').val(1);
         return true;
     });
 });
