@@ -8,14 +8,16 @@ namespace OnlineTest.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.IgnoreList.Clear();
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/select").Include(
-                "~/Scripts/select-test.js"));
+                "~/Scripts/select-test*"));
 
             bundles.Add(new ScriptBundle("~/bundles/solve").Include(
-                "~/Scripts/solve-test.js"));
+                "~/Scripts/solve-test*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
