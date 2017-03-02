@@ -1,5 +1,4 @@
-﻿(function () {
-
+﻿$(document).ready(function () {
     function previous(e) {
         $('#direction').val(-1);
         history.back();
@@ -12,5 +11,4 @@
         $('#direction').val(1);
         return true;
     });
-
-})();
+});
