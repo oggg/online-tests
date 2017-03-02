@@ -2,12 +2,12 @@
 @model TestStartViewModel
 
 <h1>@Model.Name</h1>
-@*@Html.ActionLink("Start test", "Solve", "Question", new { testId = Model.Id }, new { @class="btn btn-info"})*@
-<button class="btn btn-info" onclick="selectTest()">Start test</button>
+<button class="btn btn-info" onclick="selectTest(event)">Start test</button>
 <script>
-    function selectTest() {
+    function selectTest(event) {
         let hostAddress = window.location.host;
+        let button = event.target;
+        button.disabled = true;
         window.open('http://' + hostAddress + '/Question/Solve?testId=' + @Model.Id + '&question=' + @Model.Question);
-        
     }
 </script>

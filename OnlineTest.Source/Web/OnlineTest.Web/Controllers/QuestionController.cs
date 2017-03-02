@@ -69,7 +69,7 @@ namespace OnlineTest.Web.Controllers
                 currentQuestion.Guessed = false;
             }
 
-            if (currentTest.QuestionIndex == currentTest.Questions.Count - 1)
+            if (question == currentTest.Questions.Count - 1)
             {
                 double result = CalculateTestResult(currentTest);
                 SaveTestResult(currentTest, currentUserId, result);
