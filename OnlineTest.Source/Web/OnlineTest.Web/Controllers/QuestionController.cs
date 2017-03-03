@@ -72,6 +72,7 @@ namespace OnlineTest.Web.Controllers
             {
                 double result = CalculateTestResult(currentTest);
                 SaveTestResult(currentTest, currentUserId, result);
+
                 return RedirectToAction("Index", "Tests");
             }
 
