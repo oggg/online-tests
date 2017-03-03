@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Caching;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -6,8 +7,6 @@ using Microsoft.AspNet.Identity;
 using OnlineTest.Models;
 using OnlineTest.Services.Contracts;
 using OnlineTest.Web.Models;
-using System.Linq;
-using System.Net;
 
 namespace OnlineTest.Web.Controllers
 {
@@ -46,7 +45,7 @@ namespace OnlineTest.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Solve(QuestionPostModel model, int testId, int question)
+        public ActionResult Solve(int selectedAnswerId, int testId, int question)
         {
             string currentUserId = User.Identity.GetUserId();
             string currentTestCacheKey = currentUserId + testId;
@@ -60,7 +59,7 @@ namespace OnlineTest.Web.Controllers
 
             QuestionCacheModel currentQuestion = currentTest.Questions[question];
 
-            if (currentQuestion.CorrectAnswerId == model.SelectedAnswerid)
+            if (currentQuestion.CorrectAnswerId == selectedAnswerId)
             {
                 currentQuestion.Guessed = true;
             }
@@ -75,7 +74,7 @@ namespace OnlineTest.Web.Controllers
                 SaveTestResult(currentTest, currentUserId, result);
                 return RedirectToAction("Index", "Tests");
             }
-            
+
             if (this.HttpContext.Cache[currentTestCacheKey] == null)
             {
                 this.HttpContext.Cache.Insert(
