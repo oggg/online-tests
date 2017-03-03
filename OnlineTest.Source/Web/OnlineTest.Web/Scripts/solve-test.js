@@ -4,7 +4,7 @@
     });
 
     $('form').submit(function () {
-        let selectedAnswerId = $('input[name="radio"]:checked').val();
+        let selectedAnswerId = $('input[name="selectedAnswerId"]:checked').val();
         $('#selectedAnswerId').val(selectedAnswerId || -1);
         return true;
     });

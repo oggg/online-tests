@@ -3,11 +3,7 @@
 @using (Html.BeginForm("Solve", "Question", new { testId = Model.TestId, question = Model.Index }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <hr />
-    <input type="hidden" name="testId" value="@Model.TestId" id="testId" />
     <input type="hidden" name="selectedAnswerId" id="selectedAnswerId" />
-    <input type="hidden" name="direction" value="0" id="direction" />
-
     <h3>
         @Model.Text
     </h3>
@@ -19,7 +15,7 @@
         <div class="form-group">
             @Html.Label(answer.Text, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                <input id="radio@(answer.Id)" type="radio" name="radio" value="@answer.Id" />
+                <input id="radio@(answer.Id)" type="radio" name="selectedAnswerId" value="@answer.Id" />
             </div>
         </div>
     }
