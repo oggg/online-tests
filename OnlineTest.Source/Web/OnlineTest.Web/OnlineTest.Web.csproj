@@ -188,6 +188,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
@@ -267,6 +268,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -277,6 +279,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\OnlineTest.Common\OnlineTest.Common.csproj">
+      <Project>{E3A00986-6187-4180-BC30-D44FE965E3B2}</Project>
+      <Name>OnlineTest.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\OnlineTest.Data\OnlineTest.Data.csproj">
       <Project>{011EF760-FFEB-4265-979C-F4FB903B1D58}</Project>
       <Name>OnlineTest.Data</Name>

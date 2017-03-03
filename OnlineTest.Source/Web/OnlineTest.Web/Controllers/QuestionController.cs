@@ -11,13 +11,11 @@ using OnlineTest.Web.Models;
 namespace OnlineTest.Web.Controllers
 {
     [Authorize]
-    public class QuestionController : Controller
+    public class QuestionController : BaseController
     {
-        private readonly IScoreService scores;
-
         public QuestionController(IScoreService scores)
+            : base(scores)
         {
-            this.scores = scores;
         }
 
         [HttpGet]
@@ -72,13 +70,12 @@ namespace OnlineTest.Web.Controllers
             {
                 double result = CalculateTestResult(currentTest);
                 SaveTestResult(currentTest, currentUserId, result);
+                this.HttpContext.Cache.Remove(currentTestCacheKey);
 
                 return RedirectToAction("Index", "Tests");
             }
 
-            if (this.HttpContext.Cache[currentTestCacheKey] == null)
-            {
-                this.HttpContext.Cache.Insert(
+            this.HttpContext.Cache.Insert(
                     currentTestCacheKey,
                     currentTest,
                     null,
@@ -86,11 +83,6 @@ namespace OnlineTest.Web.Controllers
                     TimeSpan.Zero,
                     CacheItemPriority.Default,
                     null);
-            }
-            else
-            {
-                this.HttpContext.Cache[currentTestCacheKey] = currentTest;
-            }
 
             currentTest.QuestionIndex = question + 1;
             return RedirectToAction("Solve", new RouteValueDictionary(new { testId = testId, question = currentTest.QuestionIndex }));

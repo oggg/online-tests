@@ -10,14 +10,14 @@ using OnlineTest.Web.Models;
 namespace OnlineTest.Web.Controllers
 {
     [Authorize]
-    public class TestsController : Controller
+    public class TestsController : BaseController
     {
         private readonly ITestsService tests;
-        private readonly IScoreService scores;
+
         public TestsController(ITestsService tests, IScoreService scores)
+            : base(scores)
         {
             this.tests = tests;
-            this.scores = scores;
         }
 
         public ActionResult Index()
@@ -64,21 +64,15 @@ namespace OnlineTest.Web.Controllers
                 Question = 0
             };
 
-            if (this.HttpContext.Cache[testCacheKey] == null)
-            {
-                this.HttpContext.Cache.Insert(
-                    testCacheKey,
-                    testCache,
-                    null,
-                    DateTime.Now.AddDays(1),
-                    TimeSpan.Zero,
-                    CacheItemPriority.Default,
-                    null);
-            }
-            else
-            {
-                this.HttpContext.Cache[testCacheKey] = testCache;
-            }
+            this.HttpContext.Cache.Insert(
+                testCacheKey,
+                testCache,
+                null,
+                DateTime.Now.AddDays(1),
+                TimeSpan.Zero,
+                CacheItemPriority.Default,
+                null);
+
 
             return View(tsvm);
         }
