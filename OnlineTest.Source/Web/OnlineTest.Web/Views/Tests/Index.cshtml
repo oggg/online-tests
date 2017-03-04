@@ -8,15 +8,15 @@
         @foreach (Test test in Model.Tests)
             {
             <tr>
+                <td class="col-md-3"><h4 id="@test.Id" class="text-center">@test.Name</h4></td>
                 @if (Model.UserScore.ContainsKey(test.Id))
-                {
-                    <td><span id="@test.Id" class="btn btn-success btn-lg">@test.Name</span></td>
-                    <td><h4>@Model.UserScore[test.Id].Result %</h4></td>
+                {   
+                    <td class="col-md-3"><h4>@Model.UserScore[test.Id].Result %</h4></td>
                 }
                 else
                 {
                     <td>
-                        <a id="@test.Id" href="/Tests/SelectTest/@test.Id" class="btn btn-success btn-lg">@test.Name</a>
+                        <a id="@test.Id" href="/Tests/SelectTest/@test.Id" class="btn btn-success btn-lg">Start test</a>
                     </td>
                 }
             </tr>
