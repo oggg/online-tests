@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    $('#back-button').on('click', function () {
+    $('#back-button:enabled').on('click', function (event) {
+        event.preventDefault();
         history.back();
     });
 

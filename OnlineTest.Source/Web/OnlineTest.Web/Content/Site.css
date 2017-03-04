@@ -28,3 +28,15 @@ textarea {
     top: 30%;
     left: 40%;
 }
+
+#selectTestContainer {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+}
+
+.centered {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+}

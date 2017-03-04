@@ -1,6 +1,6 @@
 ﻿@model OnlineTest.Web.Models.QuestionViewModel
 
-@using (Html.BeginForm("Solve", "Question", new { testId = Model.TestId, question = Model.Index }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Solve", "Question", new { testId = Model.TestId, question = Model.Index }, FormMethod.Post, new { @class = "form-horizontal centered", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <input type="hidden" name="selectedAnswerId" id="selectedAnswerId" />
@@ -19,11 +19,19 @@
             </div>
         </div>
     }
-    
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            @if (!Model.IsLast)
+            @if (Model.IsFirst)
             {
+                <button class="btn btn-default" id="back-button" disabled>Previous question</button>
+            }
+            else
+            {
+                <button class="btn btn-default" id="back-button">Previous question</button>
+            }
+            @if (!Model.IsLast)
+            {   
                 <input type="submit" class="btn btn-default" value="Next question" />
             }
             else
@@ -34,14 +42,14 @@
     </div>
 }
 
-@if (!Model.IsFirst)
+@*@if (!Model.IsFirst)
 {
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <button class="btn btn-default" id="back-button">Previous question</button>
         </div>
     </div>
-}
+}*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

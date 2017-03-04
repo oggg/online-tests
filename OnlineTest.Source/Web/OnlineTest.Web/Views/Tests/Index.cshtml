@@ -11,7 +11,7 @@
                 @if (Model.UserScore.ContainsKey(test.Id))
                 {
                     <td><span id="@test.Id" class="btn btn-success btn-lg">@test.Name</span></td>
-                    <td><span>@Model.UserScore[test.Id].Result</span></td>
+                    <td><h4>@Model.UserScore[test.Id].Result %</h4></td>
                 }
                 else
                 {
